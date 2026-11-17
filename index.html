@@ -336,17 +336,16 @@
   }
   env.addEventListener('click', openInvite);
 
-  // RSVP: open the email, and show a backup message in case the mail app doesn't open
+  // RSVP "No": opens an email to Maria and admin, with a backup note in case the mail app doesn't open
+  // ("Yes" simply opens the GHL RSVP form, no script needed)
   var thanks = document.getElementById('thanks');
-  document.querySelectorAll('.btn[data-answer="no"]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var yes = btn.getAttribute('data-answer') === 'yes';
-      var addr = yes ? 'marketing@mariarochagroup.com' : 'maria@mariarochagroup.com';
-      thanks.innerHTML = (yes ? 'Wonderful! We can\u2019t wait to see you. ' : 'Thank you for letting us know. ') +
-        'If your email didn\u2019t open, send your reply to <a href="mailto:' + addr + '">' + addr + '</a>.';
+  var noBtn = document.querySelector('.btn-no');
+  if (noBtn){
+    noBtn.addEventListener('click', function(){
+      thanks.innerHTML = 'Thank you for letting us know. If your email didn\u2019t open, send your reply to <a href="mailto:maria@mariarochagroup.com">maria@mariarochagroup.com</a>.';
       thanks.classList.remove('show'); void thanks.offsetWidth; thanks.classList.add('show');
     });
-  });
+  }
 
   // replay
   document.getElementById('replay').addEventListener('click', function(){
