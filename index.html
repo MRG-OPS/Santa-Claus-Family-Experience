@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Santa Claus Family Experience | You're Invited</title>
+<style>html,body{margin:0;padding:0;background:#3a1729}</style>
+</head>
+<body>
 <!-- MRG Santa Claus Family Experience invitation: paste into a GHL Custom HTML/Javascript element -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -241,8 +250,8 @@
 
       <h2 class="reveal" style="animation-delay:1.6s">Will you join us?</h2>
       <div class="rsvp reveal" style="animation-delay:1.7s">
-        <a class="btn btn-yes" data-answer="yes" href="mailto:marketing@mariarochagroup.com?subject=RSVP%20YES%20-%20Santa%20Claus%20Family%20Experience&body=Yes%2C%20we%27ll%20be%20there!%0AName%3A%20%0ANumber%20of%20guests%3A%20">Yes, we'll be there</a>
-        <a class="btn btn-no" data-answer="no" href="mailto:marketing@mariarochagroup.com?subject=RSVP%20NO%20-%20Santa%20Claus%20Family%20Experience&body=Sorry%2C%20we%20can%27t%20make%20it%20this%20time.%0AName%3A%20">Sorry, can't make it</a>
+        <a class="btn btn-yes" data-answer="yes" href="https://api.leadconnectorhq.com/widget/form/J1HIOHgDxWGzpavxEGcX" target="_top" rel="noopener">Yes, we'll be there</a>
+        <a class="btn btn-no" data-answer="no" href="mailto:maria@mariarochagroup.com,admin@mariarochagroup.com?subject=RSVP%20NO%20-%20Santa%20Claus%20Family%20Experience&body=Sorry%2C%20we%20can%27t%20make%20it%20this%20time.%0AName%3A%20">Sorry, can't make it</a>
       </div>
       <p class="thanks" id="thanks" role="status"></p>
 
@@ -329,11 +338,12 @@
 
   // RSVP: open the email, and show a backup message in case the mail app doesn't open
   var thanks = document.getElementById('thanks');
-  document.querySelectorAll('.btn[data-answer]').forEach(function(btn){
+  document.querySelectorAll('.btn[data-answer="no"]').forEach(function(btn){
     btn.addEventListener('click', function(){
       var yes = btn.getAttribute('data-answer') === 'yes';
-      thanks.innerHTML = (yes ? 'Wonderful! We can’t wait to see you. ' : 'Thank you for letting us know. ') +
-        'If your email didn’t open, send your reply to <a href="mailto:marketing@mariarochagroup.com">marketing@mariarochagroup.com</a>.';
+      var addr = yes ? 'marketing@mariarochagroup.com' : 'maria@mariarochagroup.com';
+      thanks.innerHTML = (yes ? 'Wonderful! We can\u2019t wait to see you. ' : 'Thank you for letting us know. ') +
+        'If your email didn\u2019t open, send your reply to <a href="mailto:' + addr + '">' + addr + '</a>.';
       thanks.classList.remove('show'); void thanks.offsetWidth; thanks.classList.add('show');
     });
   });
@@ -359,3 +369,6 @@
 })();
 </script>
 </div>
+
+</body>
+</html>
