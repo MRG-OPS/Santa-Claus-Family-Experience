@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Santa Claus Movie Night | You're Invited</title>
 <style>html,body{margin:0;padding:0;background:#3a1729}#mrg-santa h1[tabindex="-1"]:focus{outline:none}
+#mrg-santa .scene-free{margin:-12px 0 0;color:#d8c3a5;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-align:center}
+#mrg-santa .free{margin:16px 0 0;display:inline-block;padding:7px 16px;border:1px solid var(--gold);border-radius:999px;background:#fff7e8;color:var(--plum);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;max-width:100%}
 #mrg-santa .chooser{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:32px 16px;text-align:center}
 #mrg-santa .chooser[hidden],#mrg-santa .scene[hidden]{display:none}
 #mrg-santa .chooser-title{margin:0;color:#f3e6d6;font-family:'Playfair Display',serif;font-size:clamp(26px,6vw,34px);line-height:1.3}
@@ -189,6 +191,7 @@
   </button>
 
   <p class="tap-hint" id="hint" data-i18n="tap">Tap to open</p>
+  <p class="scene-free" data-i18n="freeShort">Free event · Wednesday, December 16</p>
 </section>
 
 <!-- ===== Invitation ===== -->
@@ -255,8 +258,10 @@
 
       <p class="lede reveal" style="animation-delay:1.2s" data-i18n="lede">An evening of holiday magic for the whole family, with a visit from Santa and a cozy Christmas movie.</p>
 
+      <p class="free reveal" style="animation-delay:1.28s" data-i18n="free">Free event for the whole family</p>
+
       <div class="details reveal" style="animation-delay:1.35s">
-        <div><span class="label" data-i18n="date">Date</span><span class="value" data-i18n="dateVal">Thu, Dec 10</span></div>
+        <div><span class="label" data-i18n="date">Date</span><span class="value" data-i18n="dateVal">Wed, Dec 16</span></div>
         <div><span class="label" data-i18n="doors">Doors open</span><span class="value">6:30 PM</span></div>
         <div><span class="label" data-i18n="movie">Movie starts</span><span class="value">7:00 PM</span></div>
       </div>
@@ -319,8 +324,8 @@
       hello: "A little holiday magic for you", openAria: "Open your invitation", tap: "Tap to open",
       invites: "Invites you to the", title: "Movie Night", scriptLine: "Santa Claus", titleLine: "Movie Night",
       lede: "An evening of holiday magic for the whole family, with a visit from Santa and a cozy Christmas movie.",
-      date: "Date", dateVal: "Thu, Dec 10", doors: "Doors open", movie: "Movie starts", location: "Location",
-      join: "Will you join us?", yes: "Yes, we'll be there", no: "Sorry, can't make it", replay: "Open it again",
+      date: "Date", dateVal: "Wed, Dec 16", doors: "Doors open", movie: "Movie starts", location: "Location",
+      join: "Will you join us?", yes: "Yes, we'll be there", no: "Sorry, can't make it", replay: "Open it again", free: "Free event for the whole family", freeShort: "Free event · Wednesday, December 16",
       noSubject: "RSVP NO - Santa Claus Movie Night", noBody: "Sorry, we can't make it this time.\nName: ",
       thanks: "Thank you for letting us know. If your email didn\u2019t open, send your reply to "
     },
@@ -329,8 +334,8 @@
       hello: "Un poco de magia navideña para ustedes", openAria: "Abrir su invitación", tap: "Toque para abrir",
       invites: "Les invita a la", title: "Noche de Cine", scriptLine: "Noche de Cine", titleLine: "con Santa Claus",
       lede: "Una noche de magia navideña para toda la familia, con la visita de Santa y una acogedora película de Navidad.",
-      date: "Fecha", dateVal: "Jue, 10 de dic", doors: "Puertas abren", movie: "Película", location: "Lugar",
-      join: "¿Nos acompañan?", yes: "Sí, ahí estaremos", no: "No podremos asistir", replay: "Abrir de nuevo",
+      date: "Fecha", dateVal: "Mié, 16 de dic", doors: "Puertas abren", movie: "Película", location: "Lugar",
+      join: "¿Nos acompañan?", yes: "Sí, ahí estaremos", no: "No podremos asistir", replay: "Abrir de nuevo", free: "Evento gratuito para toda la familia", freeShort: "Evento gratuito · Miércoles, 16 de diciembre",
       noSubject: "RSVP NO - Noche de Cine con Santa Claus", noBody: "Lo sentimos, no podremos asistir esta vez.\nNombre: ",
       thanks: "Gracias por avisarnos. Si su correo no se abrió, envíe su respuesta a "
     }
@@ -355,13 +360,13 @@
 
   var chooser = document.getElementById('chooser');
   var sceneEl = document.getElementById('scene');
-  function showScene(l){
+  function showScene(l, moveFocus){
     setLang(l);
     chooser.hidden = true;
     sceneEl.hidden = false;
-    var env = document.getElementById('envelope'); if (env) env.focus({preventScroll:true});
+    if (moveFocus) { var env = document.getElementById('envelope'); if (env) env.focus({preventScroll:true}); }
   }
-  document.querySelectorAll('[data-choose]').forEach(function(b){ b.addEventListener('click', function(){ showScene(b.getAttribute('data-choose')); }); });
+  document.querySelectorAll('[data-choose]').forEach(function(b){ b.addEventListener('click', function(){ showScene(b.getAttribute('data-choose'), true); }); });
   document.querySelectorAll('[data-set-lang]').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.getAttribute('data-set-lang')); }); });
 
   // Skip the question when the link already says the language: ...?lang=es or ...?lang=en
